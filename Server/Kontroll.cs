@@ -21,12 +21,23 @@ namespace Server
 
        public void addByEiendom(int enr, Etype type, int verditakst, string adresse, bool solgt)
        {
+          
+           //Sjekker at ENR ikke er benyttet fra før
+           if (findEiendom(enr) != null)
+           {
+               throw new Exception ("Enr er allerede i bruk.");
+           }
            ByEiendom nyeiendom = new ByEiendom(enr, type, verditakst, solgt, adresse);
            objBase.Store(nyeiendom);
        }
 
        public void addLandEiendom(int enr, Etype type, int verditakst, string matrikkelnr, bool solgt)
        {
+           //Sjekker at ENR ikke er benyttet fra før
+           if (findEiendom(enr) != null)
+           {
+               throw new Exception("Enr er allerede i bruk.");
+           }
            LandEiendom nyeiendom = new LandEiendom(enr, type, verditakst, solgt, matrikkelnr);
            objBase.Store(nyeiendom);
        }
@@ -58,7 +69,6 @@ namespace Server
        //Teller hvor mange eiendommer det er i databasen
        public int countEiendom()
        {
-
            int antallEiendommer = 0;
 
            foreach (Eiendom eiendom in objBase.Query<Eiendom>())

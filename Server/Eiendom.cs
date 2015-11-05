@@ -14,6 +14,7 @@ namespace Server
        public Eiendom(int enr, Etype type, int verditakst, bool solgt)
        {
            //SETTENR
+
            this.enr = enr;
            setType(type);
            setVerditakst(verditakst);
