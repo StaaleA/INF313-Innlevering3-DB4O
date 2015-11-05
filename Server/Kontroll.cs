@@ -77,6 +77,9 @@ namespace Server
            {
                eiendom.setSolgt(solgt);
            }
+
+           //Lagrer endringene i databasen
+           objBase.Store(eiendom);
        }
 
        //Teller hvor mange eiendommer det er i databasen
@@ -104,6 +107,7 @@ namespace Server
            }
 
            eiendom.addBud(beløp);
+           objBase.Store(eiendom); //Lagrer endringene
        }
 
        //Returnere alle eiendommer fra DB
