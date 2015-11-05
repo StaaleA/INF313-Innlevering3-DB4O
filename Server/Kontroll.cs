@@ -48,7 +48,7 @@ namespace Server
            return 0;
        }
 
-       //SØker opp riktig eiendom og legger inn bud på den aktuelle eiendommen
+       //Søker opp riktig eiendom og legger inn bud på den aktuelle eiendommen
        public void addBud(int enr, int beløp)
        {
            Eiendom eiendom = findEiendom(enr);
@@ -66,18 +66,28 @@ namespace Server
            //RETURNER RIKTIG EIENDOM
            foreach (Eiendom eiendom in objBase.Query<Eiendom>())
            {
-              if (eiendom.getEnr() == enr) {
+              if (eiendom.getEnr() == enr) 
+              {
                   return eiendom;
               }
            }
           return null;
-      
        }
 
        public List<Eiendom> findEiendom(Etype type)
+       //Finner alle eiendommer av en oppgitt type, legger de i en liste og returnerer listen
        {
-           //TODO: RETURNER RIKTIG EIENDOMMER
-           return null;
+           List<Eiendom> eiendommer = new List<Eiendom>();
+
+           foreach (Eiendom eiendom in objBase.Query<Eiendom>())
+           {
+               if (eiendom.getType() == type)
+               {
+                   eiendommer.Add(eiendom);
+               }
+           }
+
+           return eiendommer;
        }
 
 
