@@ -17,7 +17,6 @@ namespace Server
            minConfig.Common.UpdateDepth = 2;
            objBase = Db4oEmbedded.OpenFile(minConfig, odbName);
            hentAlt();
-
        }
 
        public void addByEiendom(int enr, Etype type, int verditakst, string adresse, bool solgt)
@@ -37,15 +36,34 @@ namespace Server
            //SLETT EN EIENDOM
        }
 
+       //Finner en eiendom, og oppdaterer info
        public void updateEiendom(int enr, int verditakst, bool solgt)
        {
-           //TODO: OPPDATERE EIENDOM
+           Eiendom eiendom = findEiendom(enr);
+          
+           //Verditakst
+           if (verditakst != null){
+               eiendom.setVerditakst(verditakst);
+           }
+
+           //Solgt
+           if (solgt != null)
+           {
+               eiendom.setSolgt(solgt);
+           }
        }
 
        public int countEiendom()
        {
-           //TELL ANTALL EIENDOMMER
-           return 0;
+
+           int antallEiendommer = 0;
+
+           foreach (Eiendom eiendom in objBase.Query<Eiendom>())
+           {
+            antallEiendommer++;
+           }
+
+           return antallEiendommer;
        }
 
        //Søker opp riktig eiendom og legger inn bud på den aktuelle eiendommen
@@ -55,15 +73,22 @@ namespace Server
            eiendom.addBud(beløp);
        }
 
+       //Returnere alle eiendommer fra DB
        public List<Eiendom> getEiendomsliste()
        {
-           //Returnere alle eiendommer fra DB
-           return null;
+           List<Eiendom> eiendommer = new List<Eiendom>();
+           
+           foreach (Eiendom eiendom in objBase.Query<Eiendom>())
+           {
+               eiendommer.Add(eiendom);
+           }
+
+           return eiendommer;
        }
 
        public Eiendom findEiendom(int enr)
        {
-           //RETURNER RIKTIG EIENDOM
+           //Returnerer en bestemt eiendom basert på enr
            foreach (Eiendom eiendom in objBase.Query<Eiendom>())
            {
               if (eiendom.getEnr() == enr) 
