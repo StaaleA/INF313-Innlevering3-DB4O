@@ -149,10 +149,20 @@ namespace Server
        }
 
 
+       //RETURNER RIKTIG EIENDOMMER MED VERDITAKST I INTERVALLET
        public List<Eiendom> findEiendom(int fraTakst, int tilTakst)
        {
-           //TODO: RETURNER RIKTIG EIENDOMMER MED VERDITAKST I INTERVALLET
-           return null;
+           List<Eiendom> eiendommer = getEiendomsliste();
+           List<Eiendom> utEiendommer = new List<Eiendom>();
+
+           foreach (Eiendom tmp in eiendommer)
+           {
+               if (tmp.getVerditakst() >= fraTakst && tmp.getVerditakst() <= tilTakst)
+               {
+                   utEiendommer.Add(tmp);
+               }
+           }
+           return utEiendommer;
        }
 
        public void lagreAlt()

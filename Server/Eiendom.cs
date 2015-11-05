@@ -36,7 +36,7 @@ namespace Server
            this.type = type;
        }
 
-       public int getVerditaks()
+       public int getVerditakst()
        {
            return this.verditakst;
        }

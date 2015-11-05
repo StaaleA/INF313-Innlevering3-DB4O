@@ -30,7 +30,7 @@ namespace Server
                 alleBud += "Kr. " + bud.ToString() + " ";
             }
 
-            return "Landeiendom: " + base.getEnr() + " " + base.getType() + " " + this.matrikkelnr + " kr. " + base.getVerditaks() + " " + (base.getSolgt() ? "er solgt" : "er ikke solgt") + " Bud: " + alleBud;
+            return "Landeiendom: " + base.getEnr() + " " + base.getType() + " " + this.matrikkelnr + " kr. " + base.getVerditakst() + " " + (base.getSolgt() ? "er solgt" : "er ikke solgt") + " Bud: " + alleBud;
        }
     }
 }
