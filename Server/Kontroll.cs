@@ -46,6 +46,13 @@ namespace Server
        //Sletter en eiendom
        public void delEiendom(int enr)
        {
+           //Sjekker at det finnes en eiendom med oppgitt enr.
+           if (findEiendom(enr) == null)
+           {
+               throw new Exception("Finner ikke eiendom med enr: " + enr);
+           }
+
+           //Sletter eiendom
            objBase.Delete(findEiendom(enr));
        }
 
@@ -53,7 +60,13 @@ namespace Server
        public void updateEiendom(int enr, int verditakst, bool solgt)
        {
            Eiendom eiendom = findEiendom(enr);
-          
+
+           //Kaster feil hvis det ikke finnes en eiendom med oppgitt enr
+           if (eiendom != null)
+           {
+               throw new Exception("Finner ikke en eiendom med enr: " + enr);
+           }
+
            //Verditakst
            if (verditakst != null){
                eiendom.setVerditakst(verditakst);
@@ -83,6 +96,13 @@ namespace Server
        public void addBud(int enr, int beløp)
        {
            Eiendom eiendom = findEiendom(enr);
+                
+           //Kaster feil hvis det ikke finnes en eiendom med oppgitt enr
+           if (eiendom == null)
+           {
+               throw new Exception("Finner ikke en eiendom med enr: " + enr);
+           }
+
            eiendom.addBud(beløp);
        }
 
