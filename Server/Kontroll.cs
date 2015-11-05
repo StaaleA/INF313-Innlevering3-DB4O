@@ -31,9 +31,11 @@ namespace Server
            objBase.Store(nyeiendom);
        }
 
+
+       //Sletter en eiendom
        public void delEiendom(int enr)
        {
-           //SLETT EN EIENDOM
+           objBase.Delete(findEiendom(enr));
        }
 
        //Finner en eiendom, og oppdaterer info
@@ -53,6 +55,7 @@ namespace Server
            }
        }
 
+       //Teller hvor mange eiendommer det er i databasen
        public int countEiendom()
        {
 
@@ -86,9 +89,9 @@ namespace Server
            return eiendommer;
        }
 
+       //Returnerer en bestemt eiendom basert på enr
        public Eiendom findEiendom(int enr)
        {
-           //Returnerer en bestemt eiendom basert på enr
            foreach (Eiendom eiendom in objBase.Query<Eiendom>())
            {
               if (eiendom.getEnr() == enr) 
@@ -99,8 +102,8 @@ namespace Server
           return null;
        }
 
-       public List<Eiendom> findEiendom(Etype type)
        //Finner alle eiendommer av en oppgitt type, legger de i en liste og returnerer listen
+       public List<Eiendom> findEiendom(Etype type)
        {
            List<Eiendom> eiendommer = new List<Eiendom>();
 
