@@ -48,9 +48,11 @@ namespace Server
            return 0;
        }
 
+       //SØker opp riktig eiendom og legger inn bud på den aktuelle eiendommen
        public void addBud(int enr, int beløp)
        {
-           //TODO: LEGG TIL NYTT BUD
+           Eiendom eiendom = findEiendom(enr);
+           eiendom.addBud(beløp);
        }
 
        public List<Eiendom> getEiendomsliste()
@@ -61,7 +63,7 @@ namespace Server
 
        public Eiendom findEiendom(int enr)
        {
-           //TODO: RETURNER RIKTIG EIENDOM
+           //RETURNER RIKTIG EIENDOM
            foreach (Eiendom eiendom in objBase.Query<Eiendom>())
            {
               if (eiendom.getEnr() == enr) {

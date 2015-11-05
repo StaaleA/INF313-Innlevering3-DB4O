@@ -24,7 +24,13 @@ namespace Server
 
         public override string ToString()
         {
-            return "Byeiendom: " + base.getEnr() + " " + base.getType() + " " + this.getAdresse() + " kr. " + base.getVerditaks() + " " + (base.getSolgt() ? "er solgt" : "er ikke solgt")  + " " + base.getBud().ToString();
+            string alleBud = "";
+            foreach (Bud bud in base.getBud())
+            {
+                alleBud += "Kr. " + bud.ToString() + " ";
+            }
+
+            return "Byeiendom: " + base.getEnr() + " " + base.getType() + " " + this.getAdresse() + " kr. " + base.getVerditaks() + " " + (base.getSolgt() ? "er solgt" : "er ikke solgt")  + " Bud: " + alleBud;
         }
     }
 

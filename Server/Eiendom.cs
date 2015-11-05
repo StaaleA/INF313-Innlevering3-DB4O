@@ -55,9 +55,11 @@ namespace Server
            this.solgt = solgt;
        }
 
+       //Mottar nytt bud og legger det i listen over bud
        internal void addBud(int beløp) 
        { 
-           //TODO: LAG NYTT BUD OG LEGG DET I BUDLISTA
+           Bud nyttbud = new Bud(beløp);
+           budliste.Add(nyttbud);
        }
 
        public List<Bud> getBud()

@@ -18,7 +18,7 @@ namespace Server
 
       public override string ToString()
       {
-          return "Budbeløp: " + beløp;
+          return beløp.ToString();
       }
     }
 }
