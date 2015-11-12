@@ -16,7 +16,6 @@ namespace Server
            minConfig.Common.ActivationDepth = 5;
            minConfig.Common.UpdateDepth = 2;
            objBase = Db4oEmbedded.OpenFile(minConfig, odbName);
-           hentAlt();
        }
 
        public void addByEiendom(int enr, Etype type, int verditakst, string adresse, bool solgt)
@@ -59,6 +58,7 @@ namespace Server
        //Finner en eiendom, og oppdaterer info
        public void updateEiendom(int enr, int verditakst, bool solgt)
        {
+          //Søker opp og oppretter aktuell eiendom
            Eiendom eiendom = findEiendom(enr);
 
            //Kaster feil hvis det ikke finnes en eiendom med oppgitt enr
@@ -67,16 +67,9 @@ namespace Server
                throw new Exception("Finner ikke en eiendom med enr: " + enr);
            }
 
-           //Verditakst
-           if (verditakst != null){
-               eiendom.setVerditakst(verditakst);
-           }
-
-           //Solgt
-           if (solgt != null)
-           {
-               eiendom.setSolgt(solgt);
-           }
+           //Oppdaterer info på eiendoms-objektet    
+           eiendom.setVerditakst(verditakst);
+           eiendom.setSolgt(solgt);
 
            //Lagrer endringene i databasen
            objBase.Store(eiendom);
@@ -168,24 +161,6 @@ namespace Server
            }
            return utEiendommer;
        }
-
-       public void lagreAlt()
-       {
-           //TODO: LAGRE ALT PÅ DB
-       }
-
-       public void hentAlt()
-       {
-           //TODO: HENT ALT PÅ DB
-           int maks = 0;
-
-           foreach(Eiendom eiendom in objBase.Query<Eiendom>())
-           {
-               maks = eiendom.getEnr() > maks ? eiendom.getEnr() : maks;
-           }
-          // Eiendom.NR = maks;
-       }
-
 
     }
 }
